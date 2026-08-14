@@ -1,23 +1,678 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+    <!-- JSON-LD Structured Data for Search Engine Optimization -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Product",
+              "name": "폴스타 5 (Polestar 5)",
+              "image": "https://yourdomain.com/images/polestar5.jpg",
+              "description": "2026년형 폴스타 5 출시 및 국내 예상 판매 가격 비교 가이드입니다. 포르쉐 타이칸 대비 뛰어난 경쟁력을 갖춘 고성능 4도어 전기 GT의 상세 견적과 모의 계산 서비스를 제공합니다.",
+              "brand": {
+                "@type": "Brand",
+                "name": "폴스타 (Polestar)"
+              },
+              "offers": {
+                "@type": "AggregateOffer",
+                "lowPrice": "170000000",
+                "highPrice": "210000000",
+                "priceCurrency": "KRW",
+                "offerCount": "2",
+                "areaServed": "KR"
+              }
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "폴스타5의 국내 예상 판매 가격은 얼마인가요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "글로벌 출시가 기준 듀얼모터 모델은 약 119,900유로(한화 약 1억 8천만원에서 1억 9천만원 선)로 책정되었습니다. 국내 시장에는 전 세계에서 가장 합리적인 금액 수준으로 책정될 것으로 예상되어, 상세 옵션에 따라 약 1억 7천만원에서 2억원 수준에서 결정될 전망입니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "폴스타5의 핵심적인 장점과 단점은 무엇이 있나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "장점으로는 자체 개발한 본디드 알루미늄 플랫폼을 통한 압도적인 차체 강성, 최대 884마력의 고성능 출력, 그리고 800V 아키텍처 기반의 초고속 충전 성능을 꼽을 수 있습니다. 단점으로는 뒷유리가 없는 혁신적인 후면 디자인으로 인해 호불호가 갈리며 디지털 카메라 미러에 적응해야 하는 점이 지적됩니다."
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "name": "폴스타5 가격 및 다이렉트 비교 견적 센터",
+              "url": "https://yourdomain.com"
+            }
+          ]
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #0B2B3C; /* 심해를 연상시키는 세련된 딥 블루 */
+            --secondary-color: #DEC5A4; /* 우아한 샴페인 골드 */
+            --bg-light: #FCFAF7; /* 편안하고 따뜻한 크림빛 백그라운드 */
+            --text-dark: #2E2A28; /* 가독성이 높은 웜 차콜 */
+            --border-color: #EBE0D2; /* 부드러운 경계선 색상 */
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 5%;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            padding: 15px 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2.2fr 1.1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        main {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(46, 42, 40, 0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        aside {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(46, 42, 40, 0.04);
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            border-left: 6px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: var(--white);
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FAF8F5;
+        }
+
+        /* Interactive Calculator Styling */
+        .calculator-container {
+            background-color: #F8F5F0;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        select, input[type="text"], input[type="tel"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            background-color: var(--white);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .calc-result {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .calc-result p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+
+        .calc-result .highlight {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background-color: #123C52;
+        }
+
+        /* Clean CSS Chart Representation */
+        .chart-box {
+            background-color: #FAF8F5;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 25px 0;
+        }
+
+        .chart-bar-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .chart-label {
+            width: 120px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .chart-bar-bg {
+            flex-grow: 1;
+            background-color: #EBE0D2;
+            height: 24px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 15px;
+        }
+
+        .chart-bar-fill {
+            background-color: var(--primary-color);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease-in-out;
+        }
+
+        .chart-bar-fill.accent {
+            background-color: var(--secondary-color);
+        }
+
+        .chart-val {
+            width: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Accordion CSS */
+        .faq-dl dt {
+            cursor: pointer;
+            font-weight: 600;
+            background-color: var(--white);
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .faq-dl dt:hover {
+            background-color: #FDFBFA;
+        }
+
+        .faq-dl dd {
+            padding: 18px;
+            background-color: #FDFDFD;
+            border-left: 4px solid var(--secondary-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin: 0 0 15px 0;
+            display: none;
+        }
+
+        .faq-dl dt.active + dd {
+            display: block;
+        }
+
+        /* Keyword Tags styling */
+        .keyword-cloud {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .keyword-cloud span {
+            background-color: #FAF5EF;
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 4px solid var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>폴스타5 가격 사양 완벽 비교분석 | 2026 프리미엄 전기 GT 구매 전략</h1>
+        <p>전 세계에서 가장 뜨거운 관심을 받는 고성능 4도어 그랜드 투어러 폴스타 5의 국가별 예상 출시 정보부터 트림별 견적 산출, 최적의 할부 및 리스 요금 계산까지 체계적으로 가이드해 드립니다.</p>
+    </header>
+
+    <nav aria-label="메인 네비게이션">
+        <ul>
+            <li><a href="#시장분석">국내 출시 및 시장 분석</a></li>
+            <li><a href="#가격비교">폴스타5 트림별 상세 가격</a></li>
+            <li><a href="#상세스펙">기술 사양 및 배터리 분석</a></li>
+            <li><a href="#장단점">장단점과 커뮤니티 여론</a></li>
+            <li><a href="#모의계산">다이렉트 모의 계산기</a></li>
+            <li><a href="#상담센터">전문 컨설팅 신청</a></li>
+        </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <div class="container">
+        
+        <main>
+            <section id="시장분석">
+                <h2>국내 전기차 시장의 새로운 기준, 폴스타5의 등장이 의미하는 바</h2>
+                <p>스웨덴의 프리미엄 하이퍼포먼스 전기차 브랜드 폴스타가 마침내 플래그십 세단 라인업인 폴스타5를 국내에 공식 선보일 채비를 마치고 있습니다. 2020년 전 세계 오토쇼와 미디어를 뒤흔들었던 콘셉트카 프리셉트의 유려한 양산 디자인을 완벽히 계승한 이 모델은 단순한 교통수단을 넘어 고도화된 기술적 철학의 결정체로 꼽힙니다. 이번에 전격 공개된 폴스타5 가격 관련 소식은 포르쉐 타이칸이나 아우디 이트론 지티 등 기존 독일 프리미엄 브랜드의 독주 체제에 균열을 일으키기에 충분합니다.</p>
+                <p>무엇보다 폴스타코리아는 한국 전기차 시장이 가진 남다른 상징성과 높은 프리미엄 세단 선호도를 면밀히 분석한 결과, 글로벌 시장 전체 판매 국가 중에서도 가장 파격적이고 매력적인 요금 구조와 프로모션 혜택을 들고 국내 고객들을 공략할 예정입니다. 전 세계적으로 자동차 원자재 상승과 배터리 공급 차질로 인한 차량 금액 변동 요인이 존재함에도 불구하고 합리적인 수준의 다이렉트 출고가 실현을 위해 마케팅 및 기술 제휴 채널을 총동원하고 있어 기대를 모으고 있습니다.</p>
+                
+                <div class="chart-box">
+                    <h3>국내 전기 GT 시장 예상 세그먼트 만족도 비교</h3>
+                    <div class="chart-bar-container">
+                        <span class="chart-label">폴스타 5</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill accent" style="width: 94%;"></div>
+                        </div>
+                        <span class="chart-val">94 점</span>
+                    </div>
+                    <div class="chart-bar-container">
+                        <span class="chart-label">포르쉐 타이칸</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 88%;"></div>
+                        </div>
+                        <span class="chart-val">88 점</span>
+                    </div>
+                    <div class="chart-bar-container">
+                        <span class="chart-label">아우디 e-tron GT</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 82%;"></div>
+                        </div>
+                        <span class="chart-val">82 점</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="가격비교">
+                <h2>폴스타5 트림별 상세 가격 및 출시 옵션 예상 금액</h2>
+                <p>글로벌 미디어를 통해 선공개된 폴스타5 가격 기준표에 따르면, 기본형 트림인 듀얼 모터 모델이 약 119,900유로 선에 책정되었으며 고성능 트림인 퍼포먼스 모델은 129,900유로에 달합니다. 이를 한화로 직접 단순 계산할 경우 환율에 따라 약 1억 8천만원에서 2억원 수준을 훌쩍 넘어가지만 국내 출시 초기에는 전방위적인 할인 혜택과 특화된 가입 조건을 결합하여 보다 공격적인 가격 경쟁력을 가질 것으로 보입니다.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>모델 및 트림 종류</th>
+                            <th>글로벌 출시 가격 (유로 기준)</th>
+                            <th>국내 예상 출시 금액 (한화 기준)</th>
+                            <th>주요 추천 타겟 및 용도</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>폴스타 5 듀얼모터</td>
+                            <td>약 119,900 EUR</td>
+                            <td>약 1억 7,500만원 ~ 1억 8,900만원</td>
+                            <td>장거리 크루징과 일상 주행 편의를 선호하는 고객</td>
+                        </tr>
+                        <tr>
+                            <td>폴스타 5 퍼포먼스</td>
+                            <td>약 129,900 EUR</td>
+                            <td>약 1억 9,500만원 ~ 2억 1,000만원</td>
+                            <td>초고성능 퍼포먼스와 한계 드라이빙을 지향하는 매니아</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>이와 같은 폴스타5 가격 설정은 프리미엄 수입 전기차 업계에서도 대단히 영리한 결정이라는 평가를 받습니다. 경쟁 브랜드인 포르쉐의 최상위 플래그십 전기차 사양과 비교했을 때 전체적인 구입 비용과 렌트 요금제 측면에서 수천만 원에 가까운 상당한 금액 절약이 가능하기 때문입니다. 특히 개인이나 기업 부문에서 장기렌트 또는 자동차 리스로 차량을 취득할 경우 초기 금융 부담률이 대폭 경감되므로 더욱 뛰어난 대안이 될 것입니다.</p>
+            </section>
+
+            <section id="상세스펙">
+                <h2>고효율 배터리와 혁신적인 차체 플랫폼 기술력 분석</h2>
+                <p>폴스타5가 이토록 뛰어난 금액 대비 주행 강성을 지닐 수 있는 비밀은 바로 영국 MIRA 연구소의 레이싱 엔지니어 출신 기술 개발팀이 직접 심혈을 기울여 완성한 차세대 본디드 알루미늄 플랫폼에 있습니다. 비틀림 강성이 기존 슈퍼카 수준을 가볍게 웃돌 뿐만 아니라, 차체 총 무게는 놀라울 정도로 가벼워 대용량 배터리를 탑재하고도 우수한 선회력과 직진 가속력을 자랑합니다.</p>
+                <p>또한 대한민국 최고의 배터리 전문 제조 업체인 SK온과 긴밀한 기술 동맹을 체결하여 차체 하부에 최적 설계된 112kWh 용량의 고밀도 니켈 망간 코발트 배터리 셀을 기본으로 장착했습니다. 800V 고전압 설계 방식을 기반으로 함으로써 정격 충전소에서 최대 350kW급 전력으로 전기를 공급할 경우 불과 22분 이내에 배터리 용량의 10퍼센트에서 80퍼센트까지 빠르게 채울 수 있습니다. 공인 주행거리 역시 국제 기준 670km 이상을 거뜬히 달성하여 도심 주행과 시외 장거리 주행 모두에서 압도적인 실용성을 보여줍니다.</p>
+            </section>
+
+            <section id="장단점">
+                <h2>실제 사용자들의 예측 여론과 대표적인 장단점 정리</h2>
+                <p>전기차 중심 온라인 동호회 사이트와 보배드림, 펨코, 에펨코리아 등 유명 자동차 커뮤니티와 디시인사이드 전기차 갤러리에서는 폴스타5의 파격적인 설계 구성을 둘러싸고 열띤 토론이 진행되고 있습니다. 무엇보다 가장 극적인 화두는 이 차가 자랑하는 독창적인 후면 유리 생략 공법입니다. 공기 저항 계수를 극한으로 낮추고 2열의 탑승자 헤드룸을 광활하게 확보하기 위해 전면 리어 윈도우 글라스를 아예 제외하는 극단적인 시도를 하였습니다.</p>
+                
+                <h3>핵심 장점 요약</h3>
+                <ul>
+                    <li>타협 없는 고출력 성능: 고성능 듀얼 모터 시스템의 시너지 효과로 합산 최고 출력 884마력과 최대 토크 1015Nm을 뿜어냅니다. 정지 상태에서 시속 100km 도달 시간은 단 3.2초에 불과합니다.</li>
+                    <li>국내 초정밀 티맵 시스템 기본 탑재: 수입차 브랜드들의 치명적인 약점인 자체 내비게이션 오류를 해결하고자 국내 전용 티맵 인포테인먼트 서비스를 깊숙이 연동하여 한국 도로 환경에 최적화된 경로 연산 안내를 제공합니다.</li>
+                    <li>혁신적인 차체 밸런스: 알루미늄 가공 프레임 공법을 통해 하부 하중 중심점이 기가 막히게 낮아 코너 돌파 시 흔들림 없는 칼날 주행을 체감할 수 있습니다.</li>
+                </ul>
+
+                <h3>핵심 단점 요약</h3>
+                <ul>
+                    <li>리어 윈도우의 부재로 인한 생소한 시야: 디지털 미러 카메라 인터페이스를 통한 후방 모니터 화면 표시에 적응이 필요하여 초기 작동 시 다소 이질감이 생길 수 있습니다.</li>
+                    <li>부담스러운 초기 구매 비용: 차량 성능 대비 합리적이지만 취등록세와 보험 가입비 등 부가적인 예산을 포함하면 2억 원에 인접하는 총비용이 소요됩니다.</li>
+                </ul>
+            </section>
+
+            <section id="자주묻는질문">
+                <h2>자주 묻는 질문 FAQ</h2>
+                <dl class="faq-dl">
+                    <dt tabindex="0" aria-expanded="false">폴스타5의 국내 공식 사전 계약 및 출시일정은 정확히 언제쯤인가요?</dt>
+                    <dd>국내 시장에는 2026년 하반기에 공식적인 사전 예약을 시작으로 본격적인 첫 차량 인도가 4분기 무렵에 개시되는 일정으로 일차 수립되어 있습니다. 구체적인 시승 안내와 인도 좌표는 폴스타코리아 공식 온라인 플랫폼 채널에 우선 공지됩니다.</dd>
+
+                    <dt tabindex="0" aria-expanded="false">고가의 수입 전기차는 국가 및 지자체 전기차 구매 보조금 혜택을 전액 받을 수 있나요?</dt>
+                    <dd>현재 국내 친환경 자동차 보조금 기준 상 고가 차량의 경우 일반 보조금 지원 범위가 배제되거나 극히 일부분만 할당됩니다. 따라서 일시불 현금 구매보다는 법인 리스나 다이렉트 렌트 요금 계산을 통해 비용 처리를 진행하여 종합 소득세와 부가 세제 절감 혜택을 극대화하는 방식이 훨씬 현명한 대안으로 추천됩니다.</dd>
+
+                    <dt tabindex="0" aria-expanded="false">폴스타5 차량의 일상적인 정비와 수리 서비스는 어디서 진행되나요?</dt>
+                    <dd>폴스타는 기존 볼보 자동차가 다년간 구축한 대한민국 전역의 탄탄한 공식 서비스 정비망과 전적으로 연계하여 전국의 지정된 프리미엄 센터에서 편리하게 소모품 교체 및 자율 주행 소프트웨어 점검을 안심하고 받으실 수 있습니다.</dd>
+                </dl>
+            </section>
+        </main>
+
+        <aside>
+            <section id="모의계산">
+                <h2>다이렉트 실시간 모의 견적 계산기</h2>
+                <p>구입 방식과 선택 옵션에 따른 가상의 실시간 예상 월 요금제를 간단한 조작을 통해 간편하게 비교 진단하고 최적의 계산 결과를 미리 점검해 보세요.</p>
+                
+                <div class="calculator-container">
+                    <div class="form-group">
+                        <label for="calc-model">세부 트림 및 옵션 모델 선택</label>
+                        <select id="calc-model" onchange="calculateInstallment()">
+                            <option value="175000000">폴스타 5 듀얼모터 (1억 7,500만원)</option>
+                            <option value="195000000">폴스타 5 퍼포먼스 (1억 9,500만원)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-term">장기 약정 유지 및 할부 기간</label>
+                        <select id="calc-term" onchange="calculateInstallment()">
+                            <option value="36">36 개월 (3년 약정)</option>
+                            <option value="48">48 개월 (4년 약정)</option>
+                            <option value="60">60 개월 (5년 약정)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-prepay">초기 준비 선납금 비율</label>
+                        <select id="calc-prepay" onchange="calculateInstallment()">
+                            <option value="10">차량 금액의 10 퍼센트 선납</option>
+                            <option value="20">차량 금액의 20 퍼센트 선납</option>
+                            <option value="30">차량 금액의 30 퍼센트 선납</option>
+                            <option value="0">초기 무보증 0원 (신용 검토 필요)</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-result">
+                        <p>실시간 다이렉트 예상 납입액</p>
+                        <div class="highlight" id="monthly-payment">월 2,140,000 원</div>
+                        <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 10px;">본 시뮬레이션 결과는 약정 금리 및 개인 신용도에 따른 오차가 포함될 수 있으며 정식 계약 체결 요건에 따라 달라질 수 있습니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="상담센터">
+                <h2>1:1 프리미엄 맞춤형 컨설팅 및 다이렉트 견적 신청</h2>
+                <p>전화 및 온라인 상담 채널을 가동하여 가장 합리적인 성지 좌표 안내와 한정 제휴 사은품 지원, 그리고 추가 특별 혜택 및 현금 지원 적용 한도 정보를 신속하고 정직하게 설계해 드립니다.</p>
+                
+                <form id="consultation-form" action="#" method="POST" onsubmit="alert('상담 신청이 정상 접수되었습니다. 담당 전문 카매니저가 신속하게 연락드리겠습니다.'); return false;">
+                    <div class="form-group">
+                        <label for="user-name">신청인 성함</label>
+                        <input type="text" id="user-name" placeholder="실명을 입력해 주세요" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-phone">연락처 및 모바일 번호</label>
+                        <input type="tel" id="user-phone" placeholder="예: 010-1234-5678" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-method">가장 선호하시는 구매 조달 방법</label>
+                        <select id="user-method">
+                            <option value="direct">개인 혹은 법인 맞춤형 다이렉트 리스</option>
+                            <option value="rental">세제 절감용 특화 법인 장기렌트</option>
+                            <option value="cash">현금 결제 및 은행 연계 오토할부</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-note">주요 추가 요청 사항</label>
+                        <textarea id="user-note" rows="3" placeholder="예: 빠른 대기 순위 확보 혜택, 실시간 전시장 인도 가능 일정 확인 등"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">고급 컨설팅 자료 무료 받아보기</button>
+                </form>
+            </section>
+        </aside>
+
+    </div>
+
+    <section style="background-color: #FAF5EF; padding: 40px 5%; margin: 0; border-top: 1px solid var(--border-color);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2>폴스타5 구매 시 고려해야 할 중요 참고 자료 및 신뢰 포털</h2>
+            <p>소비자의 완벽한 결정과 객관적인 비교 분석을 위해 가장 투명하고 정직하게 구축된 공인 외부 정보 안내망을 전달합니다. 해당 전문 기관들의 객관적인 평가 자료와 시뮬레이터 프로그램 시스템 정보를 적극 교차 대조하여 후회 없는 성공적 계약을 설계해 보세요.</p>
+            <div class="keyword-cloud" style="margin-top: 20px;">
+                <a href="https://directschecke.koreahankang.com" target="_blank" rel="noopener" style="text-decoration: none; display: inline-block; padding: 8px 16px; background-color: var(--primary-color); color: var(--white); border-radius: 4px; font-weight: 600;">자동차 전문 리스 및 렌트 가이드라인 웹사이트</a>
+                <a href="https://namu.wiki/w/%ED%8F%B4%EC%8A%A4%ED%83%80%205" target="_blank" rel="noopener" style="text-decoration: none; display: inline-block; padding: 8px 16px; background-color: #E6DFD5; color: var(--text-dark); border-radius: 4px; font-weight: 600;">나무위키 폴스타5 백과사전 항목 정보</a>
+                <a href="https://www.polestar.com/kr/" target="_blank" rel="noopener" style="text-decoration: none; display: inline-block; padding: 8px 16px; background-color: #E6DFD5; color: var(--text-dark); border-radius: 4px; font-weight: 600;">폴스타 공식 브랜드 웹쇼룸 사이트</a>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <script>
+        // Interactive Monthly Payment Calculator
+        function calculateInstallment() {
+            const basePrice = parseInt(document.getElementById('calc-model').value);
+            const term = parseInt(document.getElementById('calc-term').value);
+            const prepayPercent = parseInt(document.getElementById('calc-prepay').value);
+
+            // Calculate principal and basic finance parameters
+            const prepayAmount = basePrice * (prepayPercent / 100);
+            const loanPrincipal = basePrice - prepayAmount;
+            
+            // Assume an annual interest rate of approximately 4.8% for premium vehicles
+            const annualInterestRate = 0.048;
+            const monthlyInterestRate = annualInterestRate / 12;
+            
+            let monthlyInstallment = 0;
+            if (loanPrincipal > 0) {
+                // Standard Amortization formula
+                monthlyInstallment = (loanPrincipal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, term)) / (Math.pow(1 + monthlyInterestRate, term) - 1);
+            }
+
+            // Convert to clean Korean Won formatting
+            const formattedResult = Math.round(monthlyInstallment).toLocaleString('ko-KR') + ' 원';
+            document.getElementById('monthly-payment').innerText = '월 ' + formattedResult;
+        }
+
+        // Initialize computation on load
+        calculateInstallment();
+
+        // FAQ Interactive Accordion Functionality
+        document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                
+                // Close other opened questions
+                document.querySelectorAll('.faq-dl dt').forEach(otherDt => {
+                    otherDt.classList.remove('active');
+                    otherDt.setAttribute('aria-expanded', 'false');
+                    const dd = otherDt.nextElementSibling;
+                    if (dd) {
+                        dd.style.display = 'none';
+                    }
+                });
+
+                // Toggle selected question
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                    const dd = dt.nextElementSibling;
+                    if (dd) {
+                        dd.style.display = 'block';
+                    }
+                }
+            });
+            
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+
+  
